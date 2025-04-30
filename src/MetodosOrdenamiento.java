@@ -141,19 +141,21 @@ public class MetodosOrdenamiento {
     }
 
     // Método de inserción con errores
-    // Error encontrado:
+    // Error encontrado:Esta ordenando Descendentemente
+    // Solución: Corregir el método para ordenar ascendentemente
     public int[] insercionPrimero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
-        for (int j = 1; j < arreglo.length; j++) {
-            int key = arreglo[j];
-            int i = j - 1;
+        for (int i = 1; i < arreglo.length; i++) {
+            int key = arreglo[i];
+            int j = i - 1;
 
-            while (i > 0 && arreglo[i] < key) {
-                arreglo[i + 1] = arreglo[i];
-                i++;
+            // Comparar y mover elementos mayores que la clave hacia adelante
+            while (j >= 0 && arreglo[j] > key) {
+                arreglo[j + 1] = arreglo[j];
+                j--;
             }
-            arreglo[i + 1] = key;
+            arreglo[j + 1] = key; // Insertar la clave en la posición correcta
         }
         return arreglo;
     }
