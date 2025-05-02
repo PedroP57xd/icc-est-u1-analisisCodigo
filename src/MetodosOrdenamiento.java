@@ -94,8 +94,12 @@ public class MetodosOrdenamiento {
     }
 
     // Método de selección con errores
-    // Error encontrado: La condicion del bucle externo era incorrecta, lo que provocaba un error de índice, ademas el contador de recorridos del bucle interno, esta restando en ves de sumar
-    // Solución: Cambiar la condicion del bucle externo para que no exceda el tamaño del arreglo y cambiar el contador de recorridos del bucle interno para que sume en ves de restar
+    // Error encontrado: La condicion del bucle externo era incorrecta, lo que
+    // provocaba un error de índice, ademas el contador de recorridos del bucle
+    // interno, esta restando en ves de sumar
+    // Solución: Cambiar la condicion del bucle externo para que no exceda el tamaño
+    // del arreglo y cambiar el contador de recorridos del bucle interno para que
+    // sume en ves de restar
 
     public int[] seleccionSegundo(int[] arregloOriginal) {
 
@@ -119,7 +123,8 @@ public class MetodosOrdenamiento {
 
     // Método de selección con errores
     // Error encontrado: Esta ordendando incorrectamente
-    // Solución: Cambiar el signo de la condicion if para que ordene ascendentemente y arreglar el remplazo de variables
+    // Solución: Cambiar el signo de la condicion if para que ordene ascendentemente
+    // y arreglar el remplazo de variables
     public int[] seleccionTercero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -195,4 +200,23 @@ public class MetodosOrdenamiento {
         return new int[] { 15, 34, 1, 2, 5, 6, 7, 10 };
     }
 
+}
+
+public int[] sortShell(int[] arregloOriginal) {
+    int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
+    int n = arreglo.length;
+    int gap = n / 2; // Inicializar el gap
+
+    while (gap > 0) {
+        for (int i = gap; i < n; i++) {
+            int temp = arreglo[i];
+            int j;
+            for (j = i; j >= gap && arreglo[j - gap] > temp; j -= gap) {
+                arreglo[j] = arreglo[j - gap];
+            }
+            arreglo[j] = temp;
+        }
+        gap /= 2; // Reducir el gap
+    }
+    return arreglo;
 }
